@@ -3,5 +3,6 @@ window.R1TEC = {
   // WhatsApp number in international format, digits only (no +, no spaces). Example Morocco: 2126XXXXXXXX
   whatsapp: "212636802267",
   instagram: "https://www.instagram.com/r1tec.store/",
-  tvAppsCode: "5238562"
+  tvAppsCode: "5238562",
+  siteCode: "5131480" // Downloader code that opens this website on TV
 };

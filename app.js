@@ -12,6 +12,7 @@
       hero_lead: "حمّل تطبيقاتنا مجاناً واطلب اشتراكاتك المفضلة مباشرة عبر واتساب — حسابات مضمونة وتفعيل فوري.",
       hero_cta_apps: "تطبيقاتنا", hero_cta_products: "تصفح المنتجات",
       trust_1: "حسابات مضمونة", trust_2: "تفعيل فوري", trust_3: "خدمة موثوقة",
+      site_code: "افتح موقعنا على التلفاز — كود Downloader",
       apps_title: "تطبيقاتنا", apps_sub: "تطبيقات من تطوير R1tec لأجهزة Android TV والهواتف وويندوز",
       products_title: "المنتجات", products_sub: "اختر المنتج واضغط للطلب — سنرد عليك على واتساب",
       all: "الكل", order: "اطلب عبر واتساب",
@@ -34,6 +35,7 @@
       hero_lead: "Download our apps for free and order your favorite subscriptions straight on WhatsApp — verified accounts, instant activation.",
       hero_cta_apps: "Our apps", hero_cta_products: "Browse products",
       trust_1: "Verified accounts", trust_2: "Instant activation", trust_3: "Trusted service",
+      site_code: "Open our site on your TV — Downloader code",
       apps_title: "Our apps", apps_sub: "Built by R1tec for Android TV, phones and Windows",
       products_title: "Products", products_sub: "Pick a product and tap to order — we reply on WhatsApp",
       all: "All", order: "Order on WhatsApp",
@@ -181,6 +183,7 @@
     cat = b.dataset.cat; renderFilters(); renderProducts();
   });
   document.querySelectorAll(".js-ig").forEach(el => el.href = C.instagram);
+  document.querySelectorAll(".js-site-code").forEach(el => el.textContent = C.siteCode);
   $("#year").textContent = new Date().getFullYear();
   apply();
 })();
