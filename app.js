@@ -15,7 +15,8 @@
       apps_title: "تطبيقاتنا", apps_sub: "تطبيقات من تطوير R1tec لأجهزة Android TV والهواتف وويندوز",
       products_title: "المنتجات", products_sub: "اختر المنتج واضغط للطلب — سنرد عليك على واتساب",
       all: "الكل", order: "اطلب عبر واتساب",
-      download: "تحميل APK", download_win: "نسخة ويندوز", source: "GitHub", help: "مساعدة عبر واتساب",
+      download: "تحميل APK", download_win: "نسخة ويندوز", help: "مساعدة عبر واتساب",
+      lm_hint: "تطبيق يصلح جميع مشاكل اللانشر", lm_dl: "تحميل",
       dl_code: "كود Downloader", dl_hint: "اكتبه في تطبيق Downloader على التلفاز",
       contact_title: "عندك سؤال؟", contact_sub: "راسلنا على واتساب وسنرد عليك بسرعة.",
       contact_wa: "راسلنا على واتساب",
@@ -36,7 +37,8 @@
       apps_title: "Our apps", apps_sub: "Built by R1tec for Android TV, phones and Windows",
       products_title: "Products", products_sub: "Pick a product and tap to order — we reply on WhatsApp",
       all: "All", order: "Order on WhatsApp",
-      download: "Download APK", download_win: "Windows version", source: "GitHub", help: "Help on WhatsApp",
+      download: "Download APK", download_win: "Windows version", help: "Help on WhatsApp",
+      lm_hint: "An app that fixes all launcher issues", lm_dl: "Download",
       dl_code: "Downloader code", dl_hint: "Type it in the Downloader app on your TV",
       contact_title: "Got a question?", contact_sub: "Message us on WhatsApp and we'll get back to you fast.",
       contact_wa: "Chat on WhatsApp",
@@ -51,11 +53,11 @@
   // ---------- Apps ----------
   const APPS = [
     {
-      id: "launcher", name: "R1tec Launcher", ver: "v1.2.4", icon: "R1",
-      grad: "linear-gradient(135deg,#7b3fe4,#f2c14e)", glow: "#f2c14e",
+      id: "launcher", name: "R1tec Launcher", ver: "v1.2.4", icon: "assets/apps/r1tec-launcher.png", light: true,
+      glow: "#f2c14e",
       code: "6185367",
       apk: `${GH}/R1tec-Launcher/releases/latest/download/R1tec-Launcher.apk`,
-      repo: `${GH}/R1tec-Launcher`,
+      extra: { name: "Launcher Manager", url: "https://xdaforums.com/attachments/lm-atv-1-0-4-apk.5498333/" },
       platforms: ["Android TV", "Google TV", "Android 8+"],
       ar: {
         desc: "واجهة رئيسية أنيقة لتلفازك: الساعة والتاريخ الهجري والميلادي، أوقات الصلاة، الطقس ومباريات اليوم.",
@@ -67,12 +69,11 @@
       }
     },
     {
-      id: "player", name: "R1TV Player", ver: "v1.9.5", icon: "TV",
-      grad: "linear-gradient(135deg,#1e66ff,#7b3fe4)", glow: "#7b3fe4",
+      id: "player", name: "R1TV Player", ver: "v1.9.5", icon: "assets/apps/r1tv-player.png",
+      glow: "#7b3fe4",
       code: C.tvAppsCode,
       apk: `${GH}/R1TV-Player/releases/latest/download/R1TV-Player.apk`,
       win: `${GH}/R1TV-Player/releases/latest/download/R1TV-Player-Windows-Setup.exe`,
-      repo: `${GH}/R1TV-Player`,
       platforms: ["Android TV", "Android", "Windows 10/11"],
       ar: {
         desc: "مشغل IPTV سريع للتلفاز والهاتف وويندوز: قنوات مباشرة، أفلام، مسلسلات ومباريات اليوم.",
@@ -109,7 +110,7 @@
   ];
 
   // ---------- Helpers ----------
-  let lang = localStorage.getItem("r1tec-lang") || "ar";
+  let lang = "ar"; try { lang = localStorage.getItem("r1tec-lang") || "ar"; } catch (e) {}
   let cat = "all";
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -119,18 +120,19 @@
     const t = T[lang];
     $("#apps-grid").innerHTML = APPS.map(a => {
       const L = a[lang];
-      return `<article class="app" style="--grad:${a.grad};--glow:${a.glow}">
-        <div class="app-top"><div class="app-icon">${a.icon}</div>
+      return `<article class="app" style="--glow:${a.glow}">
+        <div class="app-top"><img class="app-icon${a.light ? " light" : ""}" src="${a.icon}" alt="${a.name}" width="64" height="64">
           <div><h3>${a.name}</h3><span class="ver">${a.ver}</span></div></div>
         <p class="desc">${esc(L.desc)}</p>
         <ul class="feat">${L.feat.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
         <div class="platforms">${a.platforms.map(p => `<span>${p}</span>`).join("")}</div>
         <div class="code"><div><small>${t.dl_code}</small><br><small>${t.dl_hint}</small></div><b>${a.code}</b></div>
+        ${a.extra ? `<div class="extra"><div><strong>${a.extra.name}</strong><br><small>${t.lm_hint}</small></div>
+          <a class="btn ghost sm" href="${a.extra.url}">${t.lm_dl}</a></div>` : ""}
         <div class="app-actions">
           <a class="btn gold sm" href="${a.apk}">${t.download}</a>
           ${a.win ? `<a class="btn ghost sm" href="${a.win}">${t.download_win}</a>` : ""}
-          <a class="btn ghost sm" href="${a.repo}" target="_blank" rel="noopener">${t.source}</a>
-          <a class="btn wa sm" href="${wa(t.wa_app(a.name))}" target="_blank" rel="noopener">${t.help}</a>
+          <a class="btn wa sm" href="${wa(t.wa_app(a.name))}">${t.help}</a>
         </div>
       </article>`;
     }).join("");
@@ -147,13 +149,13 @@
     const t = T[lang];
     $("#products-grid").innerHTML = PRODUCTS.filter(p => cat === "all" || p.cat === cat).map(p => `
       <article class="card">
-        <a class="img" href="${wa(t.wa_product(p.name))}" target="_blank" rel="noopener">
+        <a class="img" tabindex="-1" href="${wa(t.wa_product(p.name))}">
           <img src="assets/products/${p.img}.jpg" alt="${esc(p.name)}" loading="lazy" width="640" height="640"></a>
         <div class="body">
           <span class="tag">${CATS[p.cat][lang]}</span>
           <h3>${esc(p.name)}</h3>
           <p>${esc(p[lang])}</p>
-          <a class="btn wa sm block" href="${wa(t.wa_product(p.name))}" target="_blank" rel="noopener">${t.order}</a>
+          <a class="btn wa sm block" href="${wa(t.wa_product(p.name))}">${t.order}</a>
         </div>
       </article>`).join("");
   }
@@ -171,7 +173,7 @@
 
   $("#lang").addEventListener("click", () => {
     lang = lang === "ar" ? "en" : "ar";
-    localStorage.setItem("r1tec-lang", lang);
+    try { localStorage.setItem("r1tec-lang", lang); } catch (e) {}
     apply();
   });
   $("#filters").addEventListener("click", e => {
@@ -179,7 +181,6 @@
     cat = b.dataset.cat; renderFilters(); renderProducts();
   });
   document.querySelectorAll(".js-ig").forEach(el => el.href = C.instagram);
-  document.querySelectorAll(".js-gh").forEach(el => el.href = C.github);
   $("#year").textContent = new Date().getFullYear();
   apply();
 })();
