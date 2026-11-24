@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R1tec — متجرك الرقمي</title>
+<meta name="description" content="R1tec — تطبيقات Android TV واشتراكات رقمية: R1tec Launcher، R1TV Player، Netflix، ChatGPT Plus، Windows، Office والمزيد. اطلب عبر واتساب.">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="icon" href="assets/logo.jpg">
+<meta property="og:title" content="R1tec — Your digital store">
+<meta property="og:image" content="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><img src="assets/logo.jpg" alt="R1tec"><span>R1tec</span></a>
+    <nav class="links">
+      <a href="#apps" data-i18n="nav_apps"></a>
+      <a href="#products" data-i18n="nav_products"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </nav>
+    <button id="lang" class="lang" aria-label="Language">EN</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <p class="eyebrow" data-i18n="hero_eyebrow"></p>
+      <h1 data-i18n="hero_title"></h1>
+      <p class="lead" data-i18n="hero_lead"></p>
+      <div class="cta">
+        <a href="#apps" class="btn gold" data-i18n="hero_cta_apps"></a>
+        <a href="#products" class="btn ghost" data-i18n="hero_cta_products"></a>
+      </div>
+      <ul class="trust">
+        <li data-i18n="trust_1"></li>
+        <li data-i18n="trust_2"></li>
+        <li data-i18n="trust_3"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="apps" class="section">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="apps_title"></h2>
+        <p data-i18n="apps_sub"></p>
+      </div>
+      <div id="apps-grid" class="apps"></div>
+    </div>
+  </section>
+
+  <section id="products" class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="products_title"></h2>
+        <p data-i18n="products_sub"></p>
+      </div>
+      <div id="filters" class="filters"></div>
+      <div id="products-grid" class="grid"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="wrap contact">
+      <h2 data-i18n="contact_title"></h2>
+      <p data-i18n="contact_sub"></p>
+      <div class="cta center">
+        <a class="btn wa js-wa" data-msg="contact" target="_blank" rel="noopener"><span data-i18n="contact_wa"></span></a>
+        <a class="btn ghost js-ig" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn ghost js-gh" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© <span id="year"></span> R1tec — <span data-i18n="footer"></span></span>
+    <span class="muted" data-i18n="disclaimer"></span>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" data-msg="contact" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.6l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.8 9.9 5 16 5s11 4.8 11 10.8-4.9 10.6-11 10.6zm6-7.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.6-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.5c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
