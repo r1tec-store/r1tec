@@ -55,7 +55,7 @@
   // ---------- Apps ----------
   const APPS = [
     {
-      id: "launcher", name: "R1tec Launcher", ver: "v1.2.4", icon: "assets/apps/r1tec-launcher.png", light: true,
+      id: "launcher", name: "R1tec Launcher", ver: "v1.3.0", icon: "assets/apps/r1tec-launcher.png", light: true,
       glow: "#f2c14e",
       code: "6185367",
       apk: `${GH}/R1tec-Launcher/releases/latest/download/R1tec-Launcher.apk`,
@@ -71,7 +71,7 @@
       }
     },
     {
-      id: "player", name: "R1TV Player", ver: "v1.9.5", icon: "assets/apps/r1tv-player.png",
+      id: "player", name: "R1TV Player", ver: "v1.9.7", icon: "assets/apps/r1tv-player.png",
       glow: "#7b3fe4",
       code: C.tvAppsCode,
       apk: `${GH}/R1TV-Player/releases/latest/download/R1TV-Player.apk`,
