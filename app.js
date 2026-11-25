@@ -55,7 +55,7 @@
   // ---------- Apps ----------
   const APPS = [
     {
-      id: "launcher", name: "R1tec Launcher", ver: "v1.3.0", icon: "assets/apps/r1tec-launcher.png", light: true,
+      id: "launcher", name: "R1tec Launcher", ver: "v1.3.0", repo: "R1tec-Launcher", icon: "assets/apps/r1tec-launcher.png", light: true,
       glow: "#f2c14e",
       code: "6185367",
       apk: `${GH}/R1tec-Launcher/releases/latest/download/R1tec-Launcher.apk`,
@@ -71,7 +71,7 @@
       }
     },
     {
-      id: "player", name: "R1TV Player", ver: "v1.9.7", icon: "assets/apps/r1tv-player.png",
+      id: "player", name: "R1TV Player", ver: "v1.9.7", repo: "R1TV-Player", icon: "assets/apps/r1tv-player.png",
       glow: "#7b3fe4",
       code: C.tvAppsCode,
       apk: `${GH}/R1TV-Player/releases/latest/download/R1TV-Player.apk`,
@@ -183,6 +183,14 @@
     cat = b.dataset.cat; renderFilters(); renderProducts();
   });
   document.querySelectorAll(".js-ig").forEach(el => el.href = C.instagram);
+  // Keep version labels in sync with the latest releases (falls back to the values above)
+  APPS.forEach(app => {
+    if (!window.fetch) return;
+    fetch("https://api.github.com/repos/r1tec-store/" + app.repo + "/releases/latest")
+      .then(r => r.ok ? r.json() : null)
+      .then(j => { if (j && j.tag_name && j.tag_name !== app.ver) { app.ver = j.tag_name; renderApps(); } })
+      .catch(() => {});
+  });
   document.querySelectorAll(".js-site-code").forEach(el => el.textContent = C.siteCode);
   $("#year").textContent = new Date().getFullYear();
   apply();
